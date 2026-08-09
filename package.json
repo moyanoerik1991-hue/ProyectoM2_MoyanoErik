@@ -1,0 +1,29 @@
+{
+  "name": "proyectom2_moyanoerik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moyanoerik1991-hue/ProyectoM2_MoyanoErik.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/moyanoerik1991-hue/ProyectoM2_MoyanoErik/issues"
+  },
+  "homepage": "https://github.com/moyanoerik1991-hue/ProyectoM2_MoyanoErik#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
