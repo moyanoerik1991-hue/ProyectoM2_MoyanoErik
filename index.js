@@ -1,17 +1,11 @@
-const express = require('express');
-const { Router } = require('express');
+const { app } = require("./src/server");
 
-const app = express();
-const router = Router();
-const port = 3000;
+const PORT = 3000;
 
-app.use(router);
-app.use(express.json());
+console.log('Server is starting...3');
+console.log('Server is starting...2');
+console.log('Server is starting...1');
 
-console.log('Server is starting...');
-console.log('Server is starting...');
-console.log('Server is starting...');
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
