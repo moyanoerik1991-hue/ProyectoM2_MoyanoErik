@@ -1,11 +1,12 @@
--- Insertar datos de ejemplo de forma idempotente
+-- Seed data for authors and checks for existing entries to avoid duplicates
 INSERT INTO authors (name, email, bio) VALUES
   ('Ana Garcia', 'ana@example.com', 'Desarrolladora full-stack apasionada por Node.js'),
   ('Carlos Ruiz', 'carlos@example.com', 'Escritor tecnico especializado en bases de datos'),  
   ('Maria Lopez', 'maria@example.com', 'Ingeniera de software con foco en APIs REST')
-ON CONFLICT (email) DO NOTHING;
+ON CONFLICT (email) DO NOTHING; -- Evitar duplicados por email
 
-INSERT INTO posts (title, content, author_id, published)
+-- Seed data for posts and checks for existing entries to avoid duplicates
+INSERT INTO posts (title, content, author_id, published) 
 SELECT 'Introducción a Node.js', 'Node.js es un runtime de JavaScript...', a.id, true
 FROM authors a WHERE a.email = 'ana@example.com'
 ON CONFLICT DO NOTHING;
@@ -30,6 +31,7 @@ SELECT 'Async/Await explicado', 'Las promesas simplifican el codigo asincrono...
 FROM authors a WHERE a.email = 'ana@example.com'
 ON CONFLICT DO NOTHING;
 
+-- Seed data for comments and checks for existing entries to avoid duplicates
 INSERT INTO comments (post_id, author_id, content)
 SELECT p.id, a.id, 'Excelente introducción, muy clara.'
 FROM posts p
