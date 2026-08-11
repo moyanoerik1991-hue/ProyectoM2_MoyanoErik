@@ -60,11 +60,8 @@ const createAuthor = async (req, res, next) => {
         const author = await authorsService.createAuthor({ name, email, bio });
         res.status(201).json(author);
     } catch (err) {
-        if (err.code === '23505') {
-            return res.status(400).json({ error: 'El email ya está registrado' });
+            next(err);
         }
-    next(err);
-  }
 };
 
 // PUT - Actualizar un autor existente
