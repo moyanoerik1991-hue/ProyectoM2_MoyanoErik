@@ -58,7 +58,11 @@ const createAuthor = async (req, res, next) => {
             return res.status(400).json({ error: 'name y email son obligatorios' });
         }
         const author = await authorsService.createAuthor({ name, email, bio });
-        res.status(201).json(author);
+        res.status(201).json({
+            success: true,
+            message: 'Autor creado correctamente.',
+            data: author
+        });
     } catch (err) {
             next(err);
         }
