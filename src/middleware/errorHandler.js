@@ -18,6 +18,14 @@ const errorHandler = (error, req, res, next) => {
             statusCode = 400;
             if (error.table === "posts") {
                 message = "El author_id indicado no corresponde a ningún autor existente.";
+            } else if (error.table === "comments") {
+            if (error.constraint?.includes("post_id")) {
+                message = "El post_id indicado no corresponde a ningún post existente.";
+            } else if (error.constraint?.includes("author_id")) {
+                message = "El author_id indicado no corresponde a ningún autor existente.";
+                } else {
+                    message = "El registro relacionado no existe.";
+                }
             } else {
                 message = "El registro relacionado no existe.";
             }
