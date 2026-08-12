@@ -57,6 +57,15 @@ const createAuthor = async (req, res, next) => {
         if (!name || !email) {
             return res.status(400).json({ error: 'name y email son obligatorios' });
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.trim())) {
+            return res.status(400).json({
+                success: false,
+                message: "El formato del email es inválido."
+            });
+        }
+
         const author = await authorsService.createAuthor({ name, email, bio });
         res.status(201).json({
             success: true,
@@ -107,16 +116,14 @@ const deleteAuthor = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const existingAuthor = await authorsService.getAuthorById(id);
+        const deletedAuthor = await authorsService.getAuthorById(id);
 
-        if (!existingAuthor) {
+        if (!deletedAuthor) {
             return res.status(404).json({
                 success: false,
                 message: `No se encontró un autor con el id ${id}.`
             });
         }
-
-        const deletedAuthor = await authorsService.deleteAuthor(id);
 
         return res.status(200).json({
             success: true,

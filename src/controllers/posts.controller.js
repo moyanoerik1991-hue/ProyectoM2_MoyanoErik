@@ -140,16 +140,14 @@ const remove = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const existingPost = await postsService.getPostById(id);
+        const deletedPost = await postsService.getPostById(id);
 
-        if (!existingPost) {
+        if (!deletedPost) {
             return res.status(404).json({
                 success: false,
                 message: `No se encontró un post con el id ${id}.`
             });
         }
-
-        const deletedPost = await postsService.deletePost(id);
 
         return res.status(200).json({
             success: true,

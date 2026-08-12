@@ -126,16 +126,14 @@ const remove = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const existingComment = await commentsService.getCommentById(id);
+        const deletedComment = await commentsService.getCommentById(id);
 
-        if (!existingComment) {
+        if (!deletedComment) {
             return res.status(404).json({
                 success: false,
                 message: `No se encontró un comentario con el id ${id}.`
             });
         }
-
-        const deletedComment = await commentsService.deleteComment(id);
 
         return res.status(200).json({
             success: true,
