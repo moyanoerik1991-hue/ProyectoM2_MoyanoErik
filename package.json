@@ -7,7 +7,7 @@
     "test": "jest --runInBand",
     "start": "node index.js",
     "dev": "node --watch index.js",
-    "db:init": "node src/db/init.js"
+    "db:init": "node src/config/db.js"
   },
   "repository": {
     "type": "git",
