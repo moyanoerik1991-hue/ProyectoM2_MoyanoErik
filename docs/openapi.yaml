@@ -175,24 +175,6 @@ paths:
         '404':
           description: Publicación no encontrada
 
-  /posts/{id}/comments:
-    parameters:
-      - $ref: '#/components/parameters/IdParam'
-    get:
-      tags: [Posts, Comments]
-      summary: Obtener comentarios de una publicación
-      responses:
-        '200':
-          description: Lista de comentarios
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Comment'
-        '404':
-          description: Publicación no encontrada
-
   /comments:
     get:
       tags: [Comments]
