@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
   loadEnvFile('.env');
 }
 
+const PORT = process.env.PORT || 3000;
 const DB_HOST= process.env.DB_HOST;
 const DB_PORT= Number(process.env.DB_PORT);
 const DB_DATABASE= process.env.DB_DATABASE;
@@ -15,6 +16,7 @@ const DB_CONNECTIONTIMEOUTMILLIS= Number(process.env.DB_CONNECTIONTIMEOUTMILLIS)
 const DATABASE_URL= process.env.DATABASE_URL
 
 module.exports = {
+  PORT,
   DB_HOST,
   DB_PORT,
   DB_DATABASE,

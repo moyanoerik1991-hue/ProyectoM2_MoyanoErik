@@ -1,6 +1,5 @@
 const { app } = require("./src/server");
-
-const PORT = 3000;
+const { PORT } = require("./src/config/ConstConfing");
 
 console.log('Server is starting...3');
 console.log('Server is starting...2');
