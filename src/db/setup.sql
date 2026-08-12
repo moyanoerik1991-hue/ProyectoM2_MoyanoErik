@@ -1,5 +1,5 @@
 -- Tabla de autores
-CREATE TABLE authors (
+CREATE TABLE IF NOT EXISTS authors (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE authors (
 );
 
 -- Tabla de posts
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXISTS posts (
   id SERIAL PRIMARY KEY,
   title VARCHAR(200) NOT NULL,
   content TEXT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE posts (
 );
 
 -- Tabla de comentarios
-CREATE TABLE comments (
+CREATE TABLE IF NOT EXISTS comments (
     id SERIAL PRIMARY KEY,
     post_id INTEGER NOT NULL,
     author_id INTEGER NOT NULL,
