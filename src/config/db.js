@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
@@ -20,5 +21,22 @@ const configPoolRailway = {
   connectionString: DATABASE_URL,
 }
 const pool = new Pool(!DATABASE_URL ? configPool : configPoolRailway);
+
+async function initDatabase() {
+  try {
+    const setupSql = fs.readFileSync(path.join(__dirname, 'src/db/setup.sql'), 'utf8');
+    const seedSql = fs.readFileSync(path.join(__dirname, 'src/db/seed.sql'), 'utf8');
+
+    await pool.query(setupSql);
+    await pool.query(seedSql);
+    console.log('Base de datos inicializada');
+  } catch (error) {
+    console.error('Error inicializando DB:', error.message);
+  } finally {
+    await pool.end();
+  }
+}
+
+initDatabase();
 
 module.exports = pool;
