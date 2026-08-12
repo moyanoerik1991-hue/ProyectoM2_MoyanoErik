@@ -1,4 +1,9 @@
 const { app } = require("./src/server");
+const { loadEnvFile } = require('node:process');
+
+if (process.env.NODE_ENV !== 'production') {
+  loadEnvFile('.env');
+}
 
 const PORT = 3000;
 
