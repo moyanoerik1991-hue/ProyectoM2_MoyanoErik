@@ -90,6 +90,14 @@ const updateAuthor = async (req, res, next) => {
             });
         }
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.trim())) {
+            return res.status(400).json({
+                success: false,
+                message: "El formato del email es inválido."
+            });
+        }
+
         const existingAuthor = await authorsService.getAuthorById(id);
 
         if (!existingAuthor) {
